@@ -47,6 +47,33 @@ class BasicPages extends StatelessWidget{
                 ),
             ],
         ),
+            Text(
+                "Jonathan Jibikilayi",
+              style: TextStyle(
+                fontStyle:  FontStyle.italic,
+                fontWeight: FontWeight.bold,
+                fontSize: 25
+              ) ,
+            ),
+            Padding(
+              padding:EdgeInsets.all(10),
+              child: Text(
+                "Ici s'arrête le monde, dit l'aveugle ayant touché le mur",
+                style: TextStyle(
+                    color: Colors.grey,
+                    fontStyle:FontStyle.italic
+                ),
+                textAlign: TextAlign.center,
+              ),
+            ),
+          Row(
+            children: [
+              Expanded(child: buttonContainer(text: "Modifier le profil") ),
+
+              buttonContainer(icon: Icons.border_color)
+
+            ],
+          ),
         ],
         )  ,
       ),
@@ -56,4 +83,24 @@ CircleAvatar myProfilePic(double raduis){
   return CircleAvatar(radius: raduis, backgroundImage: AssetImage("images/profile.jpg"));
 
 }
+
+Container buttonContainer({IconData? icon, String? text}){
+  return Container(
+    margin: EdgeInsets.only(left: 10,right: 10),
+    padding: EdgeInsets.all(15),
+    decoration : BoxDecoration(
+      borderRadius: BorderRadius.circular(20),
+      color: Colors.blue
+    ),
+    child: (icon == null)
+      ? Center(child: Text(text ?? "", style:TextStyle(color: Colors.white),),)
+      : Icon(icon, color: Colors.white,),
+    height: 50,
+
+
+  );
+}
+
+
+
 }
