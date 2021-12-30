@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 void main() {
@@ -26,6 +27,7 @@ class BasicPages extends StatelessWidget{
 
 @override
   Widget build(BuildContext context) {
+  double width= MediaQuery.of(context).size.width;
     // TODO: implement build
     return Scaffold(
       appBar:  AppBar(
@@ -33,6 +35,7 @@ class BasicPages extends StatelessWidget{
       ),
       body: SingleChildScrollView(
         child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
           children: [
             Stack(
               alignment: Alignment.topCenter,
@@ -47,18 +50,25 @@ class BasicPages extends StatelessWidget{
                 ),
             ],
         ),
-            Text(
-                "Jonathan Jibikilayi",
-              style: TextStyle(
-                fontStyle:  FontStyle.italic,
-                fontWeight: FontWeight.bold,
-                fontSize: 25
-              ) ,
+            Row(
+              children: [
+                Spacer(),
+                Text(
+                  "Jonathan Jibikilayi",
+                  style: TextStyle(
+                      fontStyle:  FontStyle.italic,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 25
+                  ) ,
+                ),
+                Spacer()
+              ],
             ),
+
             Padding(
               padding:EdgeInsets.all(10),
               child: Text(
-                "Ici s'arrête le monde, dit l'aveugle ayant touché le mur",
+                "La famille qui n'a pas trop de richesses, et qui ne souffre pas la pauvreté, jouit d'un bonheur désirable ",
                 style: TextStyle(
                     color: Colors.grey,
                     fontStyle:FontStyle.italic
@@ -74,6 +84,20 @@ class BasicPages extends StatelessWidget{
 
             ],
           ),
+            Divider(thickness: 2,),
+            sectionTitltText("A propos de moi"),
+            aboutRow(icon: Icons.house, text:" Laouina El wahat, Tunis"),
+            aboutRow(icon: Icons.work, text:" Software Developper"),
+            aboutRow(icon: Icons.favorite, text:" Relation Compliquée"),
+
+            Divider(thickness: 2,),
+            sectionTitltText("Amis"),
+            Row(
+              children: [
+                allFriend(  width/3.5)
+              ],
+            ),
+
         ],
         )  ,
       ),
@@ -100,6 +124,72 @@ Container buttonContainer({IconData? icon, String? text}){
 
   );
 }
+
+Widget sectionTitltText(String text){
+  return Padding(
+      padding: EdgeInsets.all(5),
+     child: Text(
+       text,
+       style: TextStyle(
+         fontWeight: FontWeight.w600,
+         fontSize: 18
+
+       ),
+     ),
+
+  );
+}
+
+Widget aboutRow({ required IconData icon, required String text} ){
+  return Row(
+    children: [
+      
+      Icon(icon),
+      Padding(
+          padding: EdgeInsets.all(5),
+        child: Text(text),
+      )
+    ],
+  );
+}
+Column friendsImage(String name, String imagePath, double width){
+
+  return Column(
+    children: [
+      Container(
+        margin: EdgeInsets.all(5),
+        width: width,
+        height: width,
+
+        decoration: BoxDecoration(
+          image: DecorationImage(image: AssetImage(imagePath), fit: BoxFit.cover),
+            borderRadius: BorderRadius.circular(20),
+            boxShadow: [BoxShadow(color:  Colors.grey)],
+            color: Colors.blue
+        ),
+      ),
+      Text(name)
+    ],
+  );
+}
+
+Row allFriend( double width) {
+  Map<String, String> friends = {
+    "David": "images/cat.jpg",
+    "Emmanuel": "images/sunflower.jpg",
+     "Danny": "images/danny.jpg"
+  };
+  List<Widget> children =[];
+  friends.forEach((name, imagePath) {
+    children.add(friendsImage( name,  imagePath,  width));
+  });
+  return Row(children: children,);
+}
+
+
+
+
+
 
 
 
