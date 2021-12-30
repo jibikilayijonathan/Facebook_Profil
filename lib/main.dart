@@ -35,14 +35,25 @@ class BasicPages extends StatelessWidget{
         child: Column(
           children: [
             Stack(
+              alignment: Alignment.topCenter,
               children: [
-                Image.asset("images/cover.jpg")
-              ],
-            )
-          ],
+                Image.asset("images/cover.jpg",height: 200, fit: BoxFit.cover ,),
+                Padding(
+                  padding: EdgeInsets.only(top: 125),
+                  child: CircleAvatar(radius: 75, backgroundColor:  Colors.white,
+                    child:  myProfilePic(72) ,
+
+                  )
+                ),
+            ],
+        ),
+        ],
         )  ,
       ),
     );
   }
+CircleAvatar myProfilePic(double raduis){
+  return CircleAvatar(radius: raduis, backgroundImage: AssetImage("images/profile.jpg"));
 
+}
 }
